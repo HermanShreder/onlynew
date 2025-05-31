@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Redirecting...</title>
+  <title>View Hidden Content</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
@@ -15,16 +15,26 @@
     }
 
     h1 {
-      font-size: 24px;
+      font-size: 26px;
       color: #e91e63;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+    }
+
+    .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 20px auto;
+      display: block;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
     .big-button {
       display: inline-block;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: bold;
-      padding: 15px 25px;
+      padding: 20px 30px;
       background-color: #e91e63;
       color: white;
       border: none;
@@ -32,7 +42,7 @@
       width: 90%;
       max-width: 400px;
       cursor: pointer;
-      margin-top: 30px;
+      margin-top: 20px;
     }
 
     .instruction {
@@ -46,37 +56,22 @@
 </head>
 <body>
 
-  <h1>You're being redirected... 🚀</h1>
+  <h1>Wanna know what I can’t post on Instagram? Tap below 👇🔥</h1>
 
-  <button class="big-button" onclick="goToSafePage()">Continue</button>
+  <img class="avatar" src="https://i.ibb.co/gML5BqWg/4349-Avatar.jpg" alt="Avatar">
+
+  <button class="big-button" onclick="goToRedirectPage()">View Hidden Content</button>
 
   <div class="instruction">
-    📲 If nothing happens, tap the button above and choose your browser to continue.
+    📲 Tap the button above and choose your browser to unlock something special 🔐😉
   </div>
 
   <script>
-    const safeLink = "https://hermanshreder.github.io/txt/";
+    const redirectLink = "https://hermanshreder.github.io/txt/";
 
-    function goToSafePage() {
-      window.location.href = safeLink;
+    function goToRedirectPage() {
+      window.location.href = redirectLink;
     }
-
-    window.onload = () => {
-      const ua = navigator.userAgent;
-      const isInstagram = ua.includes("Instagram") || ua.includes("FBAV");
-      const isAndroid = /Android/i.test(ua);
-      const isIOS = /iPhone|iPad|iPod/i.test(ua);
-
-      if (isInstagram && isAndroid) {
-        setTimeout(() => {
-          window.location.href = "intent://hermanshreder.github.io/txt/#Intent;package=com.android.chrome;scheme=https;end;";
-        }, 500);
-      } else if (isInstagram && isIOS) {
-        setTimeout(() => {
-          window.location.href = safeLink;
-        }, 500);
-      }
-    };
   </script>
 
 </body>
