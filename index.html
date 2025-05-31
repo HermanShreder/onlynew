@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>View Hidden Content</title>
+  <title>🔥 Exclusive Access - OnlyFans 🔥</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
@@ -15,19 +15,16 @@
     }
 
     h1 {
-      font-size: 26px;
-      color: #e91e63;
-      margin-bottom: 15px;
+      font-size: 28px;
+      color: #e74c3c;
+      margin-bottom: 10px;
     }
 
-    .avatar {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 20px auto;
-      display: block;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    .timer {
+      font-size: 24px;
+      color: #e74c3c;
+      font-weight: bold;
+      margin-bottom: 20px;
     }
 
     .big-button {
@@ -35,7 +32,7 @@
       font-size: 20px;
       font-weight: bold;
       padding: 20px 30px;
-      background-color: #e91e63;
+      background-color: #3897f0;
       color: white;
       border: none;
       border-radius: 12px;
@@ -46,7 +43,7 @@
     }
 
     .instruction {
-      margin-top: 30px;
+      margin-top: 40px;
       font-size: 16px;
       color: #444;
       line-height: 1.5;
@@ -56,22 +53,58 @@
 </head>
 <body>
 
-  <h1>Wanna know what I can’t post on Instagram? Tap below 👇🔥</h1>
+  <h1>😍 Get Exclusive Access 😍</h1>
+  <div class="timer" id="timer">12:00:00</div>
 
-  <img class="avatar" src="https://i.ibb.co/gML5BqWg/4349-Avatar.jpg" alt="Avatar">
-
-  <button class="big-button" onclick="goToRedirectPage()">View Hidden Content</button>
+  <button class="big-button" onclick="redirect()">👉 JOIN ME NOW 👈</button>
 
   <div class="instruction">
-    📲 Tap the button above and choose your browser to unlock something special 🔐😉
+    📱 If the page doesn't open, tap the button again and select your browser to continue.
   </div>
 
   <script>
-    const redirectLink = "https://hermanshreder.github.io/txt/";
+    const fallbackURL = "https://onlyfans.com/lily_sweety1/c9";
 
-    function goToRedirectPage() {
-      window.location.href = redirectLink;
+    function isIOS() {
+      return /iPhone|iPad|iPod/i.test(navigator.userAgent);
     }
+
+    function redirect() {
+      if (isIOS()) {
+        // iPhone — просто задержка и редирект (обходит WebView)
+        setTimeout(() => {
+          window.location.href = fallbackURL;
+        }, 100);
+      } else {
+        // Android — через ошибку intent:// для выхода из WebView
+        window.location.href = intent://fake#Intent;scheme=invalid;package=invalid.package.name;S.browser_fallback_url=${encodeURIComponent(fallbackURL)};end;;
+      }
+    }
+
+    function startTimer(duration, display) {
+      let timer = duration, hours, minutes, seconds;
+      setInterval(() => {
+        hours = parseInt(timer / 3600, 10);
+        minutes = parseInt((timer % 3600) / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        hours = hours < 10 ? "0" + hours : hours;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = hours + ":" + minutes + ":" + seconds;
+
+        if (--timer < 0) {
+          timer = duration;
+        }
+      }, 1000);
+    }
+
+    window.onload = () => {
+      const twelveHours = 12 * 60 * 60;
+      const display = document.getElementById('timer');
+      startTimer(twelveHours, display);
+    };
   </script>
 
 </body>
