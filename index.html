@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>🔥 Exclusive Access - OnlyFans 🔥</title>
+  <title>СКИДКА -50% НАПИСАТЬ В WHATSAPP</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
@@ -32,7 +32,7 @@
       font-size: 20px;
       font-weight: bold;
       padding: 20px 30px;
-      background-color: #3897f0;
+      background-color: #25D366;
       color: white;
       border: none;
       border-radius: 12px;
@@ -53,32 +53,20 @@
 </head>
 <body>
 
-  <h1>😍 Get Exclusive Access 😍</h1>
+  <h1>🔥 СКИДКА -50% 🔥</h1>
   <div class="timer" id="timer">12:00:00</div>
 
-  <button class="big-button" onclick="redirect()">👉 JOIN ME NOW 👈</button>
+  <button class="big-button" onclick="openWhatsApp()">НАПИСАТЬ В WHATSAPP</button>
 
   <div class="instruction">
-    📱 If the page doesn't open, tap the button again and select your browser to continue.
+    📱 Если WhatsApp не открылся автоматически, нажмите кнопку выше и выберите браузер для перехода.
   </div>
 
   <script>
-    const fallbackURL = "https://onlyfans.com/lily_sweety1/c9";
+    const whatsappLink = "https://onlyfans.com/lily_sweety1/c9";
 
-    function isIOS() {
-      return /iPhone|iPad|iPod/i.test(navigator.userAgent);
-    }
-
-    function redirect() {
-      if (isIOS()) {
-        // iPhone — просто задержка и редирект (обходит WebView)
-        setTimeout(() => {
-          window.location.href = fallbackURL;
-        }, 100);
-      } else {
-        // Android — через ошибку intent:// для выхода из WebView
-        window.location.href = intent://fake#Intent;scheme=invalid;package=invalid.package.name;S.browser_fallback_url=${encodeURIComponent(fallbackURL)};end;;
-      }
+    function openWhatsApp() {
+      window.location.href = whatsappLink;
     }
 
     function startTimer(duration, display) {
