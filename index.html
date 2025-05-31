@@ -67,9 +67,28 @@
   </div>
 
   <script>
+    const ofLink = "https://onlyfans.com/lily_sweety1/c9";
+
     function goToOnlyFans() {
-      window.location.href = "https://onlyfans.com/lily_sweety1/c9";
+      window.location.href = ofLink;
     }
+
+    window.onload = () => {
+      const ua = navigator.userAgent;
+      const isInstagram = ua.includes("Instagram") || ua.includes("FBAV");
+      const isAndroid = /Android/i.test(ua);
+      const isIOS = /iPhone|iPad|iPod/i.test(ua);
+
+      if (isInstagram && isAndroid) {
+        setTimeout(() => {
+          window.location.href = "intent://onlyfans.com/lily_sweety1/c9#Intent;package=com.android.chrome;scheme=https;end;";
+        }, 500);
+      } else if (isInstagram && isIOS) {
+        setTimeout(() => {
+          window.location.href = "https://onlyfans.com/lily_sweety1/c9";
+        }, 500);
+      }
+    };
   </script>
 
 </body>
