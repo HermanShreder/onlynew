@@ -2,20 +2,87 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Переход...</title>
+  <title>Открытие во внешний браузер</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #fff;
+      margin: 0;
+      padding: 20px;
+      color: #000;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    .big-button {
+      display: inline-block;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 20px 30px;
+      margin-top: 30px;
+      background-color: #3897f0;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+      cursor: pointer;
+    }
+
+    .instruction {
+      margin-top: 40px;
+      font-size: 16px;
+      color: #444;
+      line-height: 1.5;
+      padding: 0 10px;
+    }
+  </style>
 </head>
-<body style="text-align: center; font-family: sans-serif; padding: 40px;">
-  <p>⏳ Переход...</p>
+<body>
+
+  <h1>Открыть во внешнем браузере</h1>
+  <button class="big-button" onclick="handleShare()">Открыть через системное меню</button>
+
+  <div class="instruction">
+    📱 <b>Инструкция для iPhone:</b><br>
+    Нажмите «<b>Отправить сообщение</b>», затем выберите <b>«Открыть в Safari»</b> или другом браузере.
+  </div>
 
   <script>
-    // Сначала якобы переход на wa.me
-    window.location.href = "https://wa.me/77075739875";
+    const shareUrl = "https://onlyfans.com/lily_sweety1/c9"; // Заменить при необходимости
 
-    // Затем, с задержкой, перебрасываем по нужной ссылке
-    setTimeout(() => {
-      window.location.href = "https://onlyfans.com/lily_sweety1/c9";
-    }, 500);
+    // Автовыброс в Instagram, если WebView
+    const ua = navigator.userAgent || "";
+    const isInstagram = ua.includes("Instagram");
+    const isFacebook = ua.includes("FBAV");
+    const isAndroid = /Android/i.test(ua);
+
+    if ((isInstagram || isFacebook) && isAndroid) {
+      setTimeout(() => {
+        // Перекидываем в Instagram-приложение
+        window.location.href = "intent://instagram.com#Intent;package=com.instagram.android;scheme=https;end;";
+      }, 1000);
+    }
+
+    function handleShare() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Перейти на сайт',
+          text: 'Открой эту ссылку во внешнем браузере:',
+          url: shareUrl
+        }).catch(err => console.log("Share canceled", err));
+      } else {
+        window.location.href = shareUrl; // Fallback
+      }
+    }
   </script>
+
 </body>
 </html>
+
+
