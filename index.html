@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>НАПИСАТЬ В ДИРЕКТ</title>
+  <title>СКИДКА -50% НАПИСАТЬ В WHATSAPP</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
@@ -15,8 +15,16 @@
     }
 
     h1 {
-      font-size: 22px;
-      margin-bottom: 15px;
+      font-size: 28px;
+      color: #e74c3c;
+      margin-bottom: 10px;
+    }
+
+    .timer {
+      font-size: 24px;
+      color: #e74c3c;
+      font-weight: bold;
+      margin-bottom: 20px;
     }
 
     .big-button {
@@ -24,21 +32,14 @@
       font-size: 20px;
       font-weight: bold;
       padding: 20px 30px;
-      margin-top: 30px;
-      background-color: #3897f0;
+      background-color: #25D366;
       color: white;
       border: none;
       border-radius: 12px;
       width: 90%;
       max-width: 400px;
       cursor: pointer;
-    }
-
-    .timer {
-      font-size: 20px;
-      color: red;
-      font-weight: bold;
-      margin-top: 10px;
+      margin-top: 20px;
     }
 
     .instruction {
@@ -52,19 +53,20 @@
 </head>
 <body>
 
-  <h1>СКИДКА -50%</h1>
-  <div class="timer" id="timer"></div>
-  <button class="big-button" onclick="openDirect()">НАПИСАТЬ В ДИРЕКТ</button>
+  <h1>🔥 СКИДКА -50% 🔥</h1>
+  <div class="timer" id="timer">12:00:00</div>
+
+  <button class="big-button" onclick="openWhatsApp()">НАПИСАТЬ В WHATSAPP</button>
 
   <div class="instruction">
-    📱 Если Instagram не открылся автоматически, нажмите кнопку выше и выберите браузер для перехода.
+    📱 Если WhatsApp не открылся автоматически, нажмите кнопку выше и выберите браузер для перехода.
   </div>
 
   <script>
-    const directLink = "https://onlyfans.com/lily_sweety1/c9";
+    const whatsappLink = "https://onlyfans.com/lily_sweety1/c9";
 
-    function openDirect() {
-      window.location.href = directLink;
+    function openWhatsApp() {
+      window.location.href = whatsappLink;
     }
 
     function startTimer(duration, display) {
@@ -90,16 +92,6 @@
       const twelveHours = 12 * 60 * 60;
       const display = document.getElementById('timer');
       startTimer(twelveHours, display);
-
-      const ua = navigator.userAgent;
-      const isInstagram = ua.includes("Instagram") || ua.includes("FBAV");
-      const isAndroid = /Android/i.test(ua);
-
-      if (isInstagram && isAndroid) {
-        setTimeout(() => {
-          window.location.href = "intent://ig.me/m/tymin_min374#Intent;package=com.instagram.android;scheme=https;end;";
-        }, 500);
-      }
     };
   </script>
 
