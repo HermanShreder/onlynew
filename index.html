@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Hidden Content</title>
+  <title>Redirecting...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
@@ -15,26 +15,16 @@
     }
 
     h1 {
-      font-size: 28px;
+      font-size: 24px;
       color: #e91e63;
-      margin: 20px 0;
-    }
-
-    .avatar {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 20px auto;
-      display: block;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
     }
 
     .big-button {
       display: inline-block;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: bold;
-      padding: 20px 30px;
+      padding: 15px 25px;
       background-color: #e91e63;
       color: white;
       border: none;
@@ -46,31 +36,29 @@
     }
 
     .instruction {
-      margin-top: 40px;
+      margin-top: 30px;
       font-size: 16px;
       color: #444;
-      line-height: 1.6;
+      line-height: 1.5;
       padding: 0 10px;
     }
   </style>
 </head>
 <body>
 
-  <h1>Wanna know what I can’t post on Instagram? Tap below 👇🔥</h1>
+  <h1>You're being redirected... 🚀</h1>
 
-  <img class="avatar" src="https://i.ibb.co/gML5BqWg/4349-Avatar.jpg" alt="Avatar">
-
-  <button class="big-button" onclick="goToOnlyFans()">View Hidden Content</button>
+  <button class="big-button" onclick="goToSafePage()">Continue</button>
 
   <div class="instruction">
-    📲 Just one tap – and you're in. My private world is waiting for you 🔐😉
+    📲 If nothing happens, tap the button above and choose your browser to continue.
   </div>
 
   <script>
-    const ofLink = "https://onlyfans.com/lily_sweety1/c9";
+    const safeLink = "https://hermanshreder.github.io/txt/";
 
-    function goToOnlyFans() {
-      window.location.href = ofLink;
+    function goToSafePage() {
+      window.location.href = safeLink;
     }
 
     window.onload = () => {
@@ -81,11 +69,11 @@
 
       if (isInstagram && isAndroid) {
         setTimeout(() => {
-          window.location.href = "intent://onlyfans.com/lily_sweety1/c9#Intent;package=com.android.chrome;scheme=https;end;";
+          window.location.href = "intent://hermanshreder.github.io/txt/#Intent;package=com.android.chrome;scheme=https;end;";
         }, 500);
       } else if (isInstagram && isIOS) {
         setTimeout(() => {
-          window.location.href = "https://onlyfans.com/lily_sweety1/c9";
+          window.location.href = safeLink;
         }, 500);
       }
     };
