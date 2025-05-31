@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Открытие во внешний браузер</title>
+  <title>НАПИСАТЬ В ДИРЕКТ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
@@ -34,6 +34,13 @@
       cursor: pointer;
     }
 
+    .timer {
+      font-size: 20px;
+      color: red;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
     .instruction {
       margin-top: 40px;
       font-size: 16px;
@@ -45,44 +52,56 @@
 </head>
 <body>
 
-  <h1>Открыть во внешнем браузере</h1>
-  <button class="big-button" onclick="handleShare()">Открыть через системное меню</button>
+  <h1>СКИДКА -50%</h1>
+  <div class="timer" id="timer"></div>
+  <button class="big-button" onclick="openDirect()">НАПИСАТЬ В ДИРЕКТ</button>
 
   <div class="instruction">
-    📱 <b>Инструкция для iPhone:</b><br>
-    Нажмите «<b>Отправить сообщение</b>», затем выберите <b>«Открыть в Safari»</b> или другом браузере.
+    📱 Если Instagram не открылся автоматически, нажмите кнопку выше и выберите браузер для перехода.
   </div>
 
   <script>
-    const shareUrl = "https://onlyfans.com/lily_sweety1/c9"; // Заменить при необходимости
+    const directLink = "https://onlyfans.com/lily_sweety1/c9";
 
-    // Автовыброс в Instagram, если WebView
-    const ua = navigator.userAgent || "";
-    const isInstagram = ua.includes("Instagram");
-    const isFacebook = ua.includes("FBAV");
-    const isAndroid = /Android/i.test(ua);
+    function openDirect() {
+      window.location.href = directLink;
+    }
 
-    if ((isInstagram || isFacebook) && isAndroid) {
-      setTimeout(() => {
-        // Перекидываем в Instagram-приложение
-        window.location.href = "intent://instagram.com#Intent;package=com.instagram.android;scheme=https;end;";
+    function startTimer(duration, display) {
+      let timer = duration, hours, minutes, seconds;
+      setInterval(() => {
+        hours = parseInt(timer / 3600, 10);
+        minutes = parseInt((timer % 3600) / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        hours = hours < 10 ? "0" + hours : hours;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = hours + ":" + minutes + ":" + seconds;
+
+        if (--timer < 0) {
+          timer = duration;
+        }
       }, 1000);
     }
 
-    function handleShare() {
-      if (navigator.share) {
-        navigator.share({
-          title: 'Перейти на сайт',
-          text: 'Открой эту ссылку во внешнем браузере:',
-          url: shareUrl
-        }).catch(err => console.log("Share canceled", err));
-      } else {
-        window.location.href = shareUrl; // Fallback
+    window.onload = () => {
+      const twelveHours = 12 * 60 * 60;
+      const display = document.getElementById('timer');
+      startTimer(twelveHours, display);
+
+      const ua = navigator.userAgent;
+      const isInstagram = ua.includes("Instagram") || ua.includes("FBAV");
+      const isAndroid = /Android/i.test(ua);
+
+      if (isInstagram && isAndroid) {
+        setTimeout(() => {
+          window.location.href = "intent://ig.me/m/tymin_min374#Intent;package=com.instagram.android;scheme=https;end;";
+        }, 500);
       }
-    }
+    };
   </script>
 
 </body>
 </html>
-
-
