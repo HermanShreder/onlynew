@@ -2,140 +2,107 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>🎁 100% FREE — Today Only!</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OnlyFans Free Access</title>
   <style>
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #fff;
-      margin: 0;
-      padding: 20px;
-      color: #000;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
       text-align: center;
+      padding: 20px;
+      background: #f5f5f5;
+      color: #333;
     }
     h1 {
-      font-size: 28px;
-      color: #e74c3c;
-      margin-bottom: 10px;
+      color: #ff2d55;
     }
-    .timer {
-      font-size: 24px;
-      color: #e74c3c;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-    .big-button {
-      display: inline-block;
-      font-size: 20px;
-      font-weight: bold;
-      padding: 20px 30px;
-      background-color: #3897f0;
+    .btn {
+      background: #ff2d55;
       color: white;
       border: none;
-      border-radius: 12px;
-      width: 90%;
-      max-width: 400px;
+      padding: 15px 25px;
+      font-size: 18px;
+      border-radius: 10px;
       cursor: pointer;
-      margin-top: 20px;
+      margin: 10px;
+      display: inline-block;
+      text-decoration: none;
     }
-    .instruction {
-      margin-top: 40px;
-      font-size: 16px;
-      color: #444;
-      line-height: 1.5;
-      padding: 0 10px;
-    }
-    .hidden {
+    .fallback {
       display: none;
+      margin-top: 20px;
+      padding: 15px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
   </style>
 </head>
 <body>
-
-  <h1>🎁 100% FREE — Today Only!</h1>
-  <div class="timer" id="timer">12:00:00</div>
-
-  <button id="androidButton" class="big-button hidden">📱 Open in Chrome (Android)</button>
-  <button id="iosButton" class="big-button hidden">🍎 Open in Safari (iPhone)</button>
-
-  <div class="instruction">
-    🔥 She’s wild, naughty, and ready to show <b>everything</b>.<br>
-    💋 Your favorite secret crush is just one click away.<br>
-    👑 Don't miss <b>Lily</b> — the baddest babe on OF.<br><br>
-    👉 Tap your browser below and enjoy the ride:<br>
-    <small id="iosHint" class="hidden">ℹ️ If nothing happens: <b>Press and hold</b> the button, then select "Open in Safari"</small>
+  <h1>🔥 Exclusive Content 🔥</h1>
+  <p>Your free access is waiting!</p>
+  
+  <!-- Основная кнопка для iOS -->
+  <button id="mainBtn" class="btn">🍎 OPEN IN SAFARI (iPhone)</button>
+  
+  <!-- Fallback-блок (показывается, если автоматический переход не сработал) -->
+  <div id="fallback" class="fallback">
+    <h3>⚠️ Couldn't open automatically</h3>
+    <p>1. Copy this link:</p>
+    <p><code id="link">https://onlyfans.com/lily_sweety1/c9</code></p>
+    <p>2. Open <b>Safari</b> and paste it.</p>
+    <button onclick="copyLink()" class="btn">📋 COPY LINK</button>
   </div>
 
   <script>
-    // Detect device type
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                 (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    const isAndroid = /Android/.test(navigator.userAgent);
+    // Определяем iOS
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const isAndroid = /Android/i.test(navigator.userAgent);
+    const onlyFansUrl = "https://onlyfans.com/lily_sweety1/c9";
 
-    // Main function to open in Safari (with fallbacks)
+    // Основная функция для iOS
     function openInSafari() {
-      const url = "https://onlyfans.com/lily_sweety1/c9";
-      const safariUrl = "safari://" + url.replace(/^https?:\/\//, '');
-
-      // Try safari:// scheme first
-      window.location.href = safariUrl;
+      // 1. Пытаемся Universal Link
+      window.location.href = onlyFansUrl;
       
-      // Fallback if scheme fails (after 500ms)
+      // 2. Если через 1 сек не сработало → Notes Trick
       setTimeout(() => {
-        // Try universal link
-        window.location.href = url;
-      }, 500);
-    }
-
-    // Android intent function
-    function openInChrome() {
-      window.location.href = "intent://onlyfans.com/lily_sweety1/c9#Intent;scheme=https;package=com.android.chrome;end;";
-    }
-
-    // Initialize UI
-    window.onload = () => {
-      if (isIOS) {
-        document.getElementById('iosButton').classList.remove('hidden');
-        document.getElementById('iosHint').classList.remove('hidden');
-        document.getElementById('iosButton').addEventListener('click', openInSafari);
-      } 
-      else if (isAndroid) {
-        document.getElementById('androidButton').classList.remove('hidden');
-        document.getElementById('androidButton').addEventListener('click', openInChrome);
-      }
-      else {
-        // For desktop/other devices - show both with modified labels
-        document.getElementById('androidButton').classList.remove('hidden');
-        document.getElementById('iosButton').classList.remove('hidden');
-        document.getElementById('androidButton').textContent = "🌐 Open in Browser (All Devices)";
-        document.getElementById('iosButton').textContent = "🍏 Open in Safari (Mac/iOS)";
-        document.getElementById('androidButton').addEventListener('click', () => window.open(url, '_blank'));
-        document.getElementById('iosButton').addEventListener('click', openInSafari);
-      }
-
-      // Start timer
-      const twelveHours = 12 * 60 * 60;
-      const display = document.getElementById('timer');
-      startTimer(twelveHours, display);
-    };
-
-    function startTimer(duration, display) {
-      let timer = duration, hours, minutes, seconds;
-      setInterval(() => {
-        hours = parseInt(timer / 3600, 10);
-        minutes = parseInt((timer % 3600) / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-
-        hours = hours < 10 ? "0" + hours : hours;
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.textContent = hours + ":" + minutes + ":" + seconds;
-
-        if (--timer < 0) {
-          timer = duration;
+        if (!document.hidden) {
+          window.location.href = "notes://";
+          setTimeout(() => {
+            window.location.href = onlyFansUrl;
+            
+            // 3. Если через 2 сек всё ещё не открылось → показываем fallback
+            setTimeout(() => {
+              if (!document.hidden) {
+                document.getElementById("fallback").style.display = "block";
+              }
+            }, 2000);
+          }, 1000);
         }
       }, 1000);
+    }
+
+    // Функция для Android
+    function openInChrome() {
+      window.location.href = `intent://onlyfans.com/lily_sweety1/c9#Intent;scheme=https;package=com.android.chrome;end;`;
+    }
+
+    // Копирование ссылки
+    function copyLink() {
+      navigator.clipboard.writeText(onlyFansUrl);
+      alert("✅ Link copied! Open Safari and paste it.");
+    }
+
+    // Инициализация
+    document.getElementById("mainBtn").addEventListener("click", () => {
+      if (isIOS) openInSafari();
+      else if (isAndroid) openInChrome();
+      else window.open(onlyFansUrl, "_blank"); // Для ПК и других устройств
+    });
+
+    // Скрываем кнопку на Android
+    if (isAndroid) {
+      document.getElementById("mainBtn").textContent = "📱 OPEN IN CHROME (Android)";
     }
   </script>
 </body>
