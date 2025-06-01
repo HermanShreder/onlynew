@@ -13,20 +13,17 @@
       color: #000;
       text-align: center;
     }
-
     h1 {
       font-size: 28px;
       color: #e74c3c;
       margin-bottom: 10px;
     }
-
     .timer {
       font-size: 24px;
       color: #e74c3c;
       font-weight: bold;
       margin-bottom: 20px;
     }
-
     .big-button {
       display: inline-block;
       font-size: 20px;
@@ -41,13 +38,15 @@
       cursor: pointer;
       margin-top: 20px;
     }
-
     .instruction {
       margin-top: 40px;
       font-size: 16px;
       color: #444;
       line-height: 1.5;
       padding: 0 10px;
+    }
+    .hidden {
+      display: none;
     }
   </style>
 </head>
@@ -56,24 +55,69 @@
   <h1>🎁 100% FREE — Today Only!</h1>
   <div class="timer" id="timer">12:00:00</div>
 
-  <button class="big-button" onclick="openInChrome()">📱 Open in Chrome (Android)</button>
-  <button class="big-button" onclick="openInSafari()">🍎 Open in Safari (iPhone)</button>
+  <button id="androidButton" class="big-button hidden">📱 Open in Chrome (Android)</button>
+  <button id="iosButton" class="big-button hidden">🍎 Open in Safari (iPhone)</button>
 
   <div class="instruction">
     🔥 She’s wild, naughty, and ready to show <b>everything</b>.<br>
     💋 Your favorite secret crush is just one click away.<br>
     👑 Don't miss <b>Lily</b> — the baddest babe on OF.<br><br>
-    👉 Tap your browser below and enjoy the ride:
+    👉 Tap your browser below and enjoy the ride:<br>
+    <small id="iosHint" class="hidden">ℹ️ If nothing happens: <b>Press and hold</b> the button, then select "Open in Safari"</small>
   </div>
 
   <script>
+    // Detect device type
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                 (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const isAndroid = /Android/.test(navigator.userAgent);
+
+    // Main function to open in Safari (with fallbacks)
+    function openInSafari() {
+      const url = "https://onlyfans.com/lily_sweety1/c9";
+      const safariUrl = "safari://" + url.replace(/^https?:\/\//, '');
+
+      // Try safari:// scheme first
+      window.location.href = safariUrl;
+      
+      // Fallback if scheme fails (after 500ms)
+      setTimeout(() => {
+        // Try universal link
+        window.location.href = url;
+      }, 500);
+    }
+
+    // Android intent function
     function openInChrome() {
       window.location.href = "intent://onlyfans.com/lily_sweety1/c9#Intent;scheme=https;package=com.android.chrome;end;";
     }
 
-    function openInSafari() {
-      window.location.href = "intent://onlyfans.com/lily_sweety1/c9";
-    }
+    // Initialize UI
+    window.onload = () => {
+      if (isIOS) {
+        document.getElementById('iosButton').classList.remove('hidden');
+        document.getElementById('iosHint').classList.remove('hidden');
+        document.getElementById('iosButton').addEventListener('click', openInSafari);
+      } 
+      else if (isAndroid) {
+        document.getElementById('androidButton').classList.remove('hidden');
+        document.getElementById('androidButton').addEventListener('click', openInChrome);
+      }
+      else {
+        // For desktop/other devices - show both with modified labels
+        document.getElementById('androidButton').classList.remove('hidden');
+        document.getElementById('iosButton').classList.remove('hidden');
+        document.getElementById('androidButton').textContent = "🌐 Open in Browser (All Devices)";
+        document.getElementById('iosButton').textContent = "🍏 Open in Safari (Mac/iOS)";
+        document.getElementById('androidButton').addEventListener('click', () => window.open(url, '_blank'));
+        document.getElementById('iosButton').addEventListener('click', openInSafari);
+      }
+
+      // Start timer
+      const twelveHours = 12 * 60 * 60;
+      const display = document.getElementById('timer');
+      startTimer(twelveHours, display);
+    };
 
     function startTimer(duration, display) {
       let timer = duration, hours, minutes, seconds;
@@ -93,13 +137,6 @@
         }
       }, 1000);
     }
-
-    window.onload = () => {
-      const twelveHours = 12 * 60 * 60;
-      const display = document.getElementById('timer');
-      startTimer(twelveHours, display);
-    };
   </script>
-
 </body>
 </html>
