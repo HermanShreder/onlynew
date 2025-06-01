@@ -48,23 +48,38 @@
   <h1>Открыть во внешнем браузере</h1>
   <button class="big-button" onclick="handleShare()">Открыть через системное меню</button>
 
-  <div class="instruction">
-    📱 <b>Инструкция для iPhone:</b><br>
-    Нажмите «<b>Отправить сообщение</b>», затем выберите <b>«Открыть в Safari»</b> или другом браузере.
-  </div>
+  <div class="instruction" id="instruction"></div>
 
   <script>
-    const shareUrl = "https://www.google.com"; // Заменить при необходимости
+    const shareUrl = "https://www.google.com"; // ← замени на нужную ссылку
 
-    // Автовыброс в Instagram, если WebView
     const ua = navigator.userAgent || "";
     const isInstagram = ua.includes("Instagram");
     const isFacebook = ua.includes("FBAV");
     const isAndroid = /Android/i.test(ua);
+    const isIOS = /iPhone|iPad|iPod/i.test(ua);
 
+    // Показ инструкции в зависимости от устройства
+    const instructionEl = document.getElementById("instruction");
+    if (isIOS) {
+      instructionEl.innerHTML = `
+        📱 <b>Инструкция для iPhone:</b><br>
+        Нажмите «<b>Отправить сообщение</b>», затем выберите <b>«Открыть в Safari»</b>.
+      `;
+    } else if (isAndroid) {
+      instructionEl.innerHTML = `
+        🤖 <b>Инструкция для Android:</b><br>
+        Прокрутите меню вправо, нажмите <b>«Ещё»</b> и выберите браузер <b>Chrome</b> или другой.
+      `;
+    } else {
+      instructionEl.innerHTML = `
+        💻 Откройте эту ссылку во внешнем браузере, если она не сработала автоматически.
+      `;
+    }
+
+    // Автовыброс из WebView Instagram/Facebook на Android
     if ((isInstagram || isFacebook) && isAndroid) {
       setTimeout(() => {
-        // Перекидываем в Instagram-приложение
         window.location.href = "intent://instagram.com#Intent;package=com.instagram.android;scheme=https;end;";
       }, 1000);
     }
@@ -77,7 +92,7 @@
           url: shareUrl
         }).catch(err => console.log("Share canceled", err));
       } else {
-        window.location.href = shareUrl; // Fallback
+        window.location.href = shareUrl;
       }
     }
   </script>
