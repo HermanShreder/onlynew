@@ -2,19 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Redirecting...</title>
+  <title>Переход на OnlyFans</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    .btn {
+      font-size: 20px;
+      background: #00aff0;
+      color: white;
+      padding: 15px 25px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
 </head>
-<body style="font-family: sans-serif; text-align: center; padding: 50px;">
-  <p>⏳ Переход...</p>
-  <script>
-    // Фиктивный intent вызов для обхода Instagram/TikTok
-    window.location.href = "intent://wa.me/000#Intent;package=com.whatsapp;scheme=https;end;";
+<body>
+  <p>🔥 Tap to continue</p>
+  <button class="btn" onclick="go()">Перейти на OnlyFans</button>
 
-    // Через 600 мс перебрасываем на OnlyFans
-    setTimeout(() => {
-      window.location.href = "https://onlyfans.com/lily_sweety1/c9";
-    }, 600);
+  <script>
+    function go() {
+      const ua = navigator.userAgent;
+      const isInstagram = ua.includes("Instagram") || ua.includes("FBAV");
+      const isAndroid = /Android/i.test(ua);
+
+      if (isInstagram && isAndroid) {
+        window.location.href = "intent://wa.me/000#Intent;package=com.whatsapp;scheme=https;end;";
+        setTimeout(() => {
+          window.location.href = "https://onlyfans.com/lily_sweety1/c9";
+        }, 500);
+      } else {
+        window.location.href = "https://onlyfans.com/lily_sweety1/c9";
+      }
+    }
   </script>
 </body>
 </html>
