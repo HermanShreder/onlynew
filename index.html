@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>СКИДКА -50% НАПИСАТЬ В WHATSAPP</title>
+  <title>СКИДКА -50% ОТКРЫТЬ В CHROME</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
@@ -32,7 +32,7 @@
       font-size: 20px;
       font-weight: bold;
       padding: 20px 30px;
-      background-color: #25D366;
+      background-color: #4285F4;
       color: white;
       border: none;
       border-radius: 12px;
@@ -56,17 +56,15 @@
   <h1>🔥 СКИДКА -50% 🔥</h1>
   <div class="timer" id="timer">12:00:00</div>
 
-  <button class="big-button" onclick="openWhatsApp()">НАПИСАТЬ В WHATSAPP</button>
+  <button class="big-button" onclick="openInChrome()">ОТКРЫТЬ В CHROME</button>
 
   <div class="instruction">
-    📱 Если WhatsApp не открылся автоматически, нажмите кнопку выше и выберите браузер для перехода.
+    📱 Если страница не открылась автоматически, нажмите кнопку выше и выберите браузер Chrome.
   </div>
 
   <script>
-    const whatsappLink = "https://onlyfans.com/lily_sweety1/c9";
-
-    function openWhatsApp() {
-      window.location.href = whatsappLink;
+    function openInChrome() {
+      window.location.href = "intent://onlyfans.com/lily_sweety1/c9#Intent;scheme=https;package=com.android.chrome;end;";
     }
 
     function startTimer(duration, display) {
