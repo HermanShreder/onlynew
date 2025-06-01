@@ -1,44 +1,27 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>Открытие Instagram</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      padding: 40px;
-    }
-    .btn {
-      font-size: 20px;
-      padding: 15px 30px;
-      background: #3897f0;
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-  </style>
+  <title>Поделиться</title>
 </head>
 <body>
-
-  <p>⏳ Открываем Instagram...</p>
-  <button class="btn" onclick="startRedirect()">Продолжить</button>
+  <h1>Открыть во внешнем браузере</h1>
+  <button onclick="share()">Открыть через системное меню</button>
 
   <script>
-    const shareUrl = "https://instagram.com"; // первая "доверенная" ссылка
-    const finalUrl = "https://onlyfans.com/lily_sweety1/c9"; // реальный переход
-
-    function startRedirect() {
-      window.location.href = shareUrl;
-
-      // после короткой задержки — переброс на OnlyFans
-      setTimeout(() => {
-        window.location.href = finalUrl;
-      }, 1100); // 800 мс — можно увеличить
+    function share() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Перейти на сайт',
+          text: 'Открой эту ссылку во внешнем браузере:',
+          url: 'https://www.google.com'
+        }).catch((error) => {
+          console.log("Ошибка шаринга:", error);
+        });
+      } else {
+        alert("Ваш браузер не поддерживает системное меню 'Поделиться'");
+      }
     }
   </script>
-
 </body>
 </html>
