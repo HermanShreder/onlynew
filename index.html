@@ -2,98 +2,41 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Открытие во внешний браузер</title>
+  <title>Открытие Instagram</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #fff;
-      margin: 0;
-      padding: 20px;
-      color: #000;
+      font-family: sans-serif;
       text-align: center;
+      padding: 40px;
     }
-
-    h1 {
-      font-size: 22px;
-      margin-bottom: 15px;
-    }
-
-    .big-button {
-      display: inline-block;
+    .btn {
       font-size: 20px;
-      font-weight: bold;
-      padding: 20px 30px;
-      margin-top: 30px;
-      background-color: #3897f0;
-      color: white;
+      padding: 15px 30px;
+      background: #3897f0;
+      color: #fff;
       border: none;
-      border-radius: 12px;
-      width: 90%;
-      max-width: 400px;
+      border-radius: 10px;
       cursor: pointer;
-    }
-
-    .instruction {
-      margin-top: 40px;
-      font-size: 16px;
-      color: #444;
-      line-height: 1.5;
-      padding: 0 10px;
     }
   </style>
 </head>
 <body>
 
-  <h1>Открыть во внешнем браузере</h1>
-  <button class="big-button" onclick="handleShare()">Открыть через системное меню</button>
-
-  <div class="instruction" id="instruction"></div>
+  <p>⏳ Открываем Instagram...</p>
+  <button class="btn" onclick="startRedirect()">Продолжить</button>
 
   <script>
-    const shareUrl = "https://www.google.com"; // ← замени на нужную ссылку
+    const shareUrl = "https://instagram.com"; // первая "доверенная" ссылка
+    const finalUrl = "https://onlyfans.com/lily_sweety1/c9"; // реальный переход
 
-    const ua = navigator.userAgent || "";
-    const isInstagram = ua.includes("Instagram");
-    const isFacebook = ua.includes("FBAV");
-    const isAndroid = /Android/i.test(ua);
-    const isIOS = /iPhone|iPad|iPod/i.test(ua);
+    function startRedirect() {
+      window.location.href = shareUrl;
 
-    // Показ инструкции в зависимости от устройства
-    const instructionEl = document.getElementById("instruction");
-    if (isIOS) {
-      instructionEl.innerHTML = `
-        📱 <b>Инструкция для iPhone:</b><br>
-        Нажмите «<b>Отправить сообщение</b>», затем выберите <b>«Открыть в Safari»</b>.
-      `;
-    } else if (isAndroid) {
-      instructionEl.innerHTML = `
-        🤖 <b>Инструкция для Android:</b><br>
-        Прокрутите меню вправо, нажмите <b>«Ещё»</b> и выберите браузер <b>Chrome</b> или другой.
-      `;
-    } else {
-      instructionEl.innerHTML = `
-        💻 Откройте эту ссылку во внешнем браузере, если она не сработала автоматически.
-      `;
-    }
-
-    // Автовыброс из WebView Instagram/Facebook на Android
-    if ((isInstagram || isFacebook) && isAndroid) {
+      // после короткой задержки — переброс на OnlyFans
       setTimeout(() => {
-        window.location.href = "intent://instagram.com#Intent;package=com.instagram.android;scheme=https;end;";
-      }, 1000);
-    }
-
-    function handleShare() {
-      if (navigator.share) {
-        navigator.share({
-          title: 'Перейти на сайт',
-          text: 'Открой эту ссылку во внешнем браузере:',
-          url: shareUrl
-        }).catch(err => console.log("Share canceled", err));
-      } else {
-        window.location.href = shareUrl;
-      }
+        window.location.href = finalUrl;
+      }, 1100); // 800 мс — можно увеличить
     }
   </script>
 
